@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eslaforde Simple Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#2B3D5B;--navy-deep:#1E2D45;--slate:#6E8EAF;--teal:#1FA585;--teal-light:#25C9A1;--teal-dark:#178A6E;--gold:#F8C700;--gold-dark:#D9A800;--bg:#F6F8FA;--bg-card:#FFF;--text:#2B3D5B;--text-light:#5A6E85;--text-muted:#8B9DB3;--border:#E2E8F0;--shadow:0 1px 3px rgba(43,61,91,.06),0 4px 16px rgba(43,61,91,.04);--shadow-lg:0 4px 12px rgba(43,61,91,.08),0 16px 40px rgba(43,61,91,.06);--radius:12px;--radius-lg:20px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+
+  nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+  .nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);cursor:pointer}
+  .nav-logo img{height:34px}
+  .nav-links{display:flex;gap:4px;list-style:none}
+  .nav-links a{display:block;padding:7px 14px;border-radius:8px;text-decoration:none;font-size:.9rem;font-weight:500;color:var(--text-light);transition:all .2s;cursor:pointer}
+  .nav-links a:hover,.nav-links a.active{color:var(--teal-dark);background:rgba(31,165,133,.08)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+  .hamburger span{width:22px;height:2px;background:var(--navy);border-radius:2px}
+
+  .page{display:none;min-height:calc(100vh - 64px)}
+  .page.active{display:block}
+  section{max-width:1140px;margin:0 auto;padding:0 24px}
+
+  .hero{padding:70px 24px 50px;text-align:center;position:relative}
+  .hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;color:var(--navy);margin-bottom:14px}
+  .hero h1 .accent{color:var(--teal)}
+  .hero p{font-size:1.1rem;color:var(--text-light);max-width:580px;margin:0 auto 36px}
+
+  .app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;padding-bottom:60px;max-width:1140px;margin:0 auto;padding-left:24px;padding-right:24px}
+  .app-card{background:var(--bg-card);border-radius:var(--radius-lg);padding:36px 32px;box-shadow:var(--shadow);border:1px solid var(--border);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+  .app-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .app-card::after{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+  .app-card:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--teal-light))}
+  .app-card:nth-child(2)::after{background:linear-gradient(90deg,var(--gold),var(--gold-dark))}
+  .app-icon{width:64px;height:64px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:18px}
+  .app-icon.anagram{background:linear-gradient(135deg,#E8F5F0,#D0EDE5);color:var(--teal)}
+  .app-icon.spelling{background:linear-gradient(135deg,#FFF8E1,#FFECB3);color:var(--gold-dark)}
+  .app-card h3{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:8px}
+  .app-card p{color:var(--text-light);font-size:.93rem;margin-bottom:12px}
+  .app-card ul{list-style:none;margin:0 0 18px;padding:0}
+  .app-card ul li{font-size:.86rem;color:var(--text-light);padding:3px 0 3px 20px;position:relative}
+  .app-card ul li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700}
+  .badge-link{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:var(--navy);color:white;text-decoration:none;border-radius:10px;font-size:.86rem;font-weight:600;transition:background .2s}
+  .badge-link:hover{background:var(--navy-deep)}
+  .badge-link svg{width:18px;height:18px}
+
+  .features-strip{padding:40px 24px;background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .features-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;text-align:center}
+  .feature-item h4{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:4px}
+  .feature-item p{font-size:.85rem;color:var(--text-muted)}
+  .feature-icon{width:40px;height:40px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:1.1rem;background:rgba(31,165,133,.08);color:var(--teal)}
+
+  .page-header{padding:56px 24px 28px;text-align:center}
+  .page-header h2{font-family:'Outfit',sans-serif;font-size:clamp(1.7rem,4vw,2.2rem);font-weight:800;letter-spacing:-.02em;color:var(--navy);margin-bottom:8px}
+  .page-header p{color:var(--text-light);max-width:500px;margin:0 auto}
+
+  .faq-section{max-width:720px;margin:0 auto;padding:0 24px 60px}
+  .faq-category{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;color:var(--teal-dark);margin:28px 0 14px;padding-bottom:6px;border-bottom:2px solid rgba(31,165,133,.15)}
+  .faq-item{background:var(--bg-card);border-radius:var(--radius);margin-bottom:8px;border:1px solid var(--border);overflow:hidden}
+  .faq-q{padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.93rem;user-select:none;transition:color .2s}
+  .faq-q:hover{color:var(--teal)}
+  .faq-q .arrow{transition:transform .3s;font-size:.75rem;color:var(--text-muted)}
+  .faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
+  .faq-item.open .faq-a{max-height:400px;padding:0 20px 16px}
+  .faq-a p{font-size:.88rem;color:var(--text-light);line-height:1.7}
+
+  .legal-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:28px}
+  .legal-tab{padding:9px 20px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;font-size:.88rem;font-weight:600;color:var(--text-light);transition:all .2s}
+  .legal-tab.active{background:var(--navy);color:white;border-color:var(--navy)}
+  .legal-content{max-width:720px;margin:0 auto;padding:0 24px 60px}
+  .legal-doc{display:none}
+  .legal-doc.active{display:block}
+  .legal-doc h3{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:700;margin:24px 0 8px;color:var(--navy)}
+  .legal-doc h3:first-child{margin-top:0}
+  .legal-doc p{font-size:.9rem;color:var(--text-light);margin-bottom:10px}
+  .legal-doc ul{margin:0 0 10px 20px;font-size:.9rem;color:var(--text-light)}
+  .legal-doc li{margin-bottom:5px}
+
+  .contact-layout{max-width:720px;margin:0 auto;padding:0 24px 60px}
+  .contact-alt{text-align:center;margin-top:20px;font-size:.86rem;color:var(--text-muted)}
+  .contact-alt a{color:var(--teal);text-decoration:none;font-weight:600}
+
+  footer{background:var(--navy-deep);color:rgba(255,255,255,.6);padding:32px 24px;text-align:center;font-size:.83rem}
+  footer a{color:rgba(255,255,255,.8);text-decoration:none;cursor:pointer}
+  footer a:hover{color:var(--teal-light)}
+  .footer-inner{max-width:1140px;margin:0 auto}
+  .footer-links{display:flex;justify-content:center;gap:20px;margin-bottom:12px;flex-wrap:wrap}
+
+  @media(max-width:768px){
+    .nav-links{display:none}
+    .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(16px);padding:12px 16px;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(43,61,91,.08);z-index:200}
+    .hamburger{display:flex}
+    .app-grid{grid-template-columns:1fr}
+    .hero{padding:48px 24px 36px}
+  }
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  .animate-in{animation:fadeUp .5s ease forwards;opacity:0}
+  .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a class="nav-logo" onclick="showPage('home')">
+      <img src="logo.png" alt="Eslaforde Simple Solutions">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a class="active" data-page="home" onclick="showPage('home')">Apps</a></li>
+      <li><a data-page="support" onclick="showPage('support')">Support</a></li>
+      <li><a data-page="legal" onclick="showPage('legal')">Privacy &amp; Terms</a></li>
+      <li><a data-page="contact" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="page active" id="page-home">
+  <div class="hero">
+    <h1 class="animate-in">Hands-on tools for<br><span class="accent">word puzzle lovers</span></h1>
+    <p class="animate-in delay-1">Eslaforde Simple Solutions builds interactive iOS apps that give you a tactile workspace to explore anagrams and spelling bee puzzles — not auto-solvers, but thinking tools.</p>
+  </div>
+  <div class="app-grid">
+    <div class="app-card animate-in delay-2">
+      <div class="app-icon anagram">🔤</div>
+      <h3>Simple Anagram Helper</h3>
+      <p>A hands-on workspace for rearranging letters. Enter your letters and get draggable tiles you can move between boxes and a freeform workspace to work through anagram puzzles at your own pace.</p>
+      <ul>
+        <li>Drag tiles between ordered boxes and a freeform workspace</li>
+        <li>Shuffle tiles to spark new ideas and see fresh arrangements</li>
+        <li>Lock letters in place once you're sure of their position</li>
+        <li>Resize the workspace to suit your solving style</li>
+        <li>Fill all boxes in one tap, or work tile by tile</li>
+      </ul>
+      <a href="#" class="badge-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.99 2.97 12.5 4.7 9.56C5.55 8.09 7.13 7.17 8.82 7.15C10.1 7.13 11.32 8.02 12.11 8.02C12.89 8.02 14.37 6.94 15.92 7.11C16.57 7.14 18.39 7.38 19.56 9.09C19.47 9.15 17.18 10.45 17.2 13.18C17.23 16.44 20.06 17.52 20.09 17.53C20.06 17.6 19.61 19.18 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg> Download on the App Store</a>
+    </div>
+    <div class="app-card animate-in delay-3">
+      <div class="app-icon spelling">⬡</div>
+      <h3>Simple Spelling Bee Helper</h3>
+      <p>A visual workspace for spelling bee puzzles. Enter your 7 letters — with the required centre letter highlighted in gold — and get hexagonal tiles you can drag, group, and shuffle to discover words.</p>
+      <ul>
+        <li>Hexagonal tiles inspired by the classic spelling bee format</li>
+        <li>Drag individual tiles or select and move groups at once</li>
+        <li>Fix tiles in place and shuffle the rest around them</li>
+        <li>Adjustable shuffle zones to focus on specific letter combos</li>
+        <li>Add duplicate tiles for letters that repeat in words</li>
+        <li>Works on iPhone, iPad, and Mac</li>
+      </ul>
+      <a href="#" class="badge-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.99 2.97 12.5 4.7 9.56C5.55 8.09 7.13 7.17 8.82 7.15C10.1 7.13 11.32 8.02 12.11 8.02C12.89 8.02 14.37 6.94 15.92 7.11C16.57 7.14 18.39 7.38 19.56 9.09C19.47 9.15 17.18 10.45 17.2 13.18C17.23 16.44 20.06 17.52 20.09 17.53C20.06 17.6 19.61 19.18 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/></svg> Download on the App Store</a>
+    </div>
+  </div>
+  <div class="features-strip">
+    <div class="features-inner">
+      <div class="feature-item"><div class="feature-icon">🖐️</div><h4>Think With Your Hands</h4><p>Drag and arrange tiles — not just read answers</p></div>
+      <div class="feature-item"><div class="feature-icon">🔀</div><h4>Shuffle &amp; Discover</h4><p>Randomise tiles to spot patterns you'd miss</p></div>
+      <div class="feature-item"><div class="feature-icon">🔒</div><h4>Privacy First</h4><p>No data collection, no tracking, no ads</p></div>
+      <div class="feature-item"><div class="feature-icon">📱</div><h4>Native Apple Apps</h4><p>Built for iPhone, iPad &amp; Mac with SwiftUI</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-support">
+  <div class="page-header"><h2>Support &amp; FAQ</h2><p>Find answers to common questions about our apps. Can't find what you need? Get in touch.</p></div>
+  <div class="faq-section">
+    <div class="faq-category">General</div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do your apps differ from auto-solvers?<span class="arrow">▼</span></div><div class="faq-a"><p>Our apps are interactive workspaces, not answer generators. Instead of typing in letters and getting a word list, you get draggable tiles that you physically rearrange. They're designed to help you think through puzzles rather than skip the thinking entirely.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is there a free trial?<span class="arrow">▼</span></div><div class="faq-a"><p>Yes. Both apps include a 14-day free trial with full access to all features. After the trial, core functionality is still available but some features require a subscription. You can manage your subscription at any time from the banknote icon in the app.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which devices are supported?<span class="arrow">▼</span></div><div class="faq-a"><p>Simple Anagram Helper runs on iPhone and iPad. Simple Spelling Bee Helper runs on iPhone, iPad, and Mac. Both are built natively with SwiftUI for the best experience on each platform.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do your apps collect my personal data?<span class="arrow">▼</span></div><div class="faq-a"><p>No. Our apps do not collect, store, or transmit any personal data. All processing happens locally on your device. There are no analytics, no tracking tools, and no advertising SDKs. See our Privacy Policy for full details.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I restore my subscription on a new device?<span class="arrow">▼</span></div><div class="faq-a"><p>Open the app and tap the banknote icon in the top-left corner. On the subscription screen, tap "Restore Purchases". This will check your Apple ID for any active subscriptions and restore access.</p></div></div>
+
+    <div class="faq-category">Simple Anagram Helper</div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I get started?<span class="arrow">▼</span></div><div class="faq-a"><p>Type your letters into the text field at the top, then tap "Start". Your letters will appear as blue, draggable tiles in the workspace. From there you can drag them into the ordered boxes above, rearrange them, or shuffle them to see new combinations.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What are the two working areas — boxes and workspace?<span class="arrow">▼</span></div><div class="faq-a"><p>The <strong>boxes</strong> are the ordered row at the top — drag tiles there to spell out words in sequence. The <strong>workspace</strong> is the grey area below where tiles can float freely. You can drag tiles between the two areas. Use the drag bar at the bottom to resize the workspace.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How does locking work?<span class="arrow">▼</span></div><div class="faq-a"><p>Tap any tile that's in a box to lock it in place — it turns black with a lock icon. Locked tiles won't move when you shuffle or drag other tiles. Tap again to unlock. This is useful when you're confident about some letter positions and want to experiment with the rest.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What does the Shuffle button do?<span class="arrow">▼</span></div><div class="faq-a"><p>If tiles are in the workspace, Shuffle randomly rearranges those floating tiles. If all tiles are in boxes, Shuffle randomly reorders the unlocked tiles within the boxes. Locked tiles always stay put.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What does "Fill Boxes" do?<span class="arrow">▼</span></div><div class="faq-a"><p>Fill Boxes takes all tiles currently in the workspace and places them randomly into empty boxes. It also collapses the workspace to its minimum height so you can focus on the letter sequence.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What happens when the trial expires?<span class="arrow">▼</span></div><div class="faq-a"><p>After the 14-day trial, you can still use the app but you'll be limited to 4 letters at a time. Subscribe for unlimited letters and full access to all features.</p></div></div>
+
+    <div class="faq-category">Simple Spelling Bee Helper</div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I enter my puzzle letters?<span class="arrow">▼</span></div><div class="faq-a"><p>You'll see 7 hexagonal input boxes. The first box (gold) is for the required centre letter. Enter it first, then type the remaining 6 letters — the cursor advances automatically. Once all 7 are entered, your tiles appear in the workspace. Tap any box to edit a letter, and use backspace to go back.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What do the different tile colours mean?<span class="arrow">▼</span></div><div class="faq-a"><p><strong>Gold</strong> tiles represent the required centre letter. <strong>Grey</strong> tiles are the other letters. <strong>Orange</strong> tiles are selected (part of a group). <strong>Black</strong> tiles are fixed in place.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I fix a tile in place?<span class="arrow">▼</span></div><div class="faq-a"><p>Tap a tile once to fix it — it turns black and won't move during shuffles. Tap it again to unfix. This is great for anchoring letters you're confident about while shuffling the others around them.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I select and move multiple tiles?<span class="arrow">▼</span></div><div class="faq-a"><p>Drag on an empty area of the workspace to draw a selection rectangle. All tiles inside will be selected (highlighted in orange). Then drag any selected tile to move the entire group together.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What are shuffle zones?<span class="arrow">▼</span></div><div class="faq-a"><p>Shuffle zones let you restrict where the Shuffle button rearranges tiles. Drag the left or right handle on the workspace edges to narrow the shuffle area. Tiles outside the zone won't be shuffled. Tap the reset button next to Shuffle to restore the full zone.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I add duplicate letters?<span class="arrow">▼</span></div><div class="faq-a"><p>Yes. Tap the "+" button next to any letter in the input area to add another tile of that letter to the workspace. This is useful for words that use the same letter more than once. To remove a duplicate, double-tap it.</p></div></div>
+
+    <div class="faq-category">Troubleshooting</div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">The app is crashing or not responding — what should I do?<span class="arrow">▼</span></div><div class="faq-a"><p>Try these steps: (1) Force-close the app and reopen it. (2) Restart your device. (3) Check the App Store for updates. (4) If the issue continues, contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e1828e8f95808295a184928d80878e938584cf828e8c">[email&#160;protected]</a> with your device model and iOS version.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Tiles are overlapping or positioned strangely after resizing.<span class="arrow">▼</span></div><div class="faq-a"><p>Tap the Shuffle button to rearrange tiles to fit the new workspace size. If that doesn't help, tap "Restart" (Anagram Helper) or "Reset" (Spelling Bee Helper) to regenerate the tiles.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I request a new feature?<span class="arrow">▼</span></div><div class="faq-a"><p>We'd love to hear from you! Send feature requests to <a href="/cdn-cgi/l/email-protection#a3c0cccdd7c2c0d7e3c6d0cfc2c5ccd1c7c68dc0ccce" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="f4979b9a80959780b491879895929b869091da979b99">[email&#160;protected]</span></a> and we'll consider them for future updates.</p></div></div>
+  </div>
+</div>
+
+<div class="page" id="page-legal">
+  <div class="page-header"><h2>Privacy &amp; Terms</h2><p>How we handle your data and the terms governing use of our apps.</p></div>
+  <section><div class="legal-tabs"><button class="legal-tab active" onclick="showLegalTab('privacy')">Privacy Policy</button><button class="legal-tab" onclick="showLegalTab('terms')">Terms of Use</button></div></section>
+  <div class="legal-content">
+    <div class="legal-doc active" id="doc-privacy">
+      <h3>Privacy Policy</h3>
+      <p><strong>Effective Date:</strong> February 2026<br><strong>Developer:</strong> Eslaforde LLC</p>
+      <h3>Overview</h3>
+      <p>Eslaforde LLC ("we", "us", "our") is committed to protecting your privacy. This Privacy Policy explains how we handle information in connection with our mobile applications ("Apps"), including Simple Anagram Helper and Simple Spelling Bee Helper.</p>
+      <h3>Information We Collect</h3>
+      <p>Our Apps are designed with privacy in mind. We do not collect, store, or transmit any personal information. Specifically:</p>
+      <ul><li>We do not collect names, email addresses, or contact information through our Apps.</li><li>We do not track your location.</li><li>We do not use analytics or tracking tools within our Apps.</li><li>We do not use cookies or similar technologies.</li><li>All processing occurs locally on your device.</li></ul>
+      <h3>Data Storage</h3>
+      <p>Simple Anagram Helper stores your current puzzle state (entered letters and tile positions) locally on your device using standard iOS preferences. Simple Spelling Bee Helper stores puzzle state in memory during your session only — it is not persisted when the app is terminated. No data is transmitted to external servers.</p>
+      <h3>Subscriptions</h3>
+      <p>Our Apps offer optional auto-renewable subscriptions managed entirely through Apple's App Store. We do not process payments directly and do not have access to your payment information. Subscription status is verified locally on your device through Apple's StoreKit framework.</p>
+      <h3>Third-Party Services</h3>
+      <p>Our Apps do not integrate third-party analytics, advertising networks, or social media SDKs. We do not share data with any third parties because we do not collect data in the first place.</p>
+      <h3>Children's Privacy</h3>
+      <p>Our Apps do not knowingly collect personal information from children under 13 (or the applicable age in your jurisdiction). Since we do not collect any personal data, our Apps are safe for users of all ages.</p>
+      <h3>Changes to This Policy</h3>
+      <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated effective date.</p>
+      <h3>Contact Us</h3>
+      <p>If you have any questions about this Privacy Policy, please contact us at <a href="/cdn-cgi/l/email-protection#dfbcb0b1abbebcab9fbaacb3beb9b0adbbbaf1bcb0b2" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="781b17160c191b0c381d0b14191e170a1c1d561b1715">[email&#160;protected]</span></a>.</p>
+    </div>
+    <div class="legal-doc" id="doc-terms">
+      <h3>Terms of Use</h3>
+      <p>Our apps are licensed under Apple's standard End User Licence Agreement (EULA). By downloading or using our apps, you agree to these terms.</p>
+      <p style="margin-top:20px"><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--navy);color:white;text-decoration:none;border-radius:10px;font-weight:600;font-size:.92rem">View Apple's Standard EULA ↗</a></p>
+      <p style="margin-top:24px">If you have any questions, please contact us at <a href="/cdn-cgi/l/email-protection#f3909c9d87929087b396809f92959c819796dd909c9e" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="beddd1d0cadfddcafedbcdd2dfd8d1ccdadb90ddd1d3">[email&#160;protected]</span></a>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-contact">
+  <div class="page-header"><h2>Get in Touch</h2><p>Have a question, bug report, or feature request? We'd love to hear from you.</p></div>
+  <div class="contact-layout">
+    <div style="width:100%;height:600px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)">
+      <iframe src="https://form.typeform.com/to/l52X54WJ" style="width:100%;height:100%;border:none"></iframe>
+    </div>
+    <div class="contact-alt">Or email us directly at <a href="/cdn-cgi/l/email-protection#9bf8f4f5effaf8efdbfee8f7fafdf4e9fffeb5f8f4f6"><span class="__cf_email__" data-cfemail="c0a3afaeb4a1a3b480a5b3aca1a6afb2a4a5eea3afad">[email&#160;protected]</span></a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a onclick="showPage('home')">Apps</a>
+      <a onclick="showPage('support')">Support</a>
+      <a onclick="showPage('legal')">Privacy Policy</a>
+      <a onclick="showPage('legal')">Terms of Use</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
+    <p>© 2026 Eslaforde LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function showPage(p){
+  document.querySelectorAll('.page').forEach(function(el){el.classList.remove('active')});
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active')});
+  var link=document.querySelector('.nav-links a[data-page="'+p+'"]');
+  if(link)link.classList.add('active');
