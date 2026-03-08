@@ -12,7 +12,6 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-
 <!-- Open Graph (Facebook, LinkedIn, iMessage previews) -->
 <meta property="og:title" content="Eslaforde Simple Solutions | Interactive Word Puzzle Apps">
 <meta property="og:description" content="Hands-on iOS apps for word puzzle lovers. Drag, shuffle, and arrange letter tiles to work through anagrams — thinking tools, not auto-solvers.">
@@ -100,6 +99,10 @@
   .app-icon{width:80px;height:80px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:18px}
   .app-icon.anagram{background:transparent}
   .app-icon.spelling{background:transparent}
+  .app-card h3{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:8px}
+  .app-card p{color:var(--text-light);font-size:.93rem;margin-bottom:12px}
+  .app-card ul{list-style:none;margin:0 0 18px;padding:0}
+  .app-card ul li{font-size:.86rem;color:var(--text-light);padding:3px 0 3px 20px;position:relative}
   .app-card h3{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:10px}
   .app-card p{color:var(--text-light);font-size:1.05rem;margin-bottom:14px;line-height:1.7}
   .app-card ul{list-style:none;margin:0 0 20px;padding:0}
@@ -166,10 +169,6 @@
 </style>
 </head>
 <body>
-
-<noscript>
-<p>Eslaforde Simple Solutions builds interactive iOS apps for word puzzle lovers. Our app Simple Anagram Helper provides a hands-on workspace for rearranging letters with draggable tiles. Download on the App Store: https://apps.apple.com/us/app/simple-anagram-helper/id6754119648. Contact us at contact@eslaforde.com.</p>
-</noscript>
 
 <nav id="mainNav">
   <div class="nav-inner">
@@ -257,9 +256,9 @@
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I add duplicate letters?<span class="arrow">&#9660;</span></div><div class="faq-a"><p>Yes. Tap the "+" button next to any letter in the input area to add another tile of that letter to the workspace. This is useful for words that use the same letter more than once. To remove a duplicate, double-tap it.</p></div></div>
 
     <div class="faq-category">Troubleshooting</div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">The app is crashing or not responding &#8212; what should I do?<span class="arrow">&#9660;</span></div><div class="faq-a"><p>Try these steps: (1) Force-close the app and reopen it. (2) Restart your device. (3) Check the App Store for updates. (4) If the issue continues, contact us at <a href="/cdn-cgi/l/email-protection#d6b5b9b8a2b7b5a296b3a5bab7b0b9a4b2b3f8b5b9bb" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="a6c5c9c8d2c7c5d2e6c3d5cac7c0c9d4c2c388c5c9cb">[email&#160;protected]</span></a> with your device model and iOS version.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">The app is crashing or not responding &#8212; what should I do?<span class="arrow">&#9660;</span></div><div class="faq-a"><p>Try these steps: (1) Force-close the app and reopen it. (2) Restart your device. (3) Check the App Store for updates. (4) If the issue continues, contact us at <a href="mailto:contact@eslaforde.com" style="color:var(--teal)">contact@eslaforde.com</a> with your device model and iOS version.</p></div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Tiles are overlapping or positioned strangely after resizing.<span class="arrow">&#9660;</span></div><div class="faq-a"><p>Tap the Shuffle button to rearrange tiles to fit the new workspace size. If that doesn't help, tap "Restart" (Anagram Helper) or "Reset" (Spelling Bee Helper) to regenerate the tiles.</p></div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I request a new feature?<span class="arrow">&#9660;</span></div><div class="faq-a"><p>We'd love to hear from you! Send feature requests to <a href="/cdn-cgi/l/email-protection#43202c2d372220370326302f22252c3127266d202c2e" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="bdded2d3c9dcdec9fdd8ced1dcdbd2cfd9d893ded2d0">[email&#160;protected]</span></a> and we'll consider them for future updates.</p></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I request a new feature?<span class="arrow">&#9660;</span></div><div class="faq-a"><p>We'd love to hear from you! Send feature requests to <a href="mailto:contact@eslaforde.com" style="color:var(--teal)">contact@eslaforde.com</a> and we'll consider them for future updates.</p></div></div>
   </div>
 </div>
 
@@ -286,13 +285,13 @@
       <h3>Changes to This Policy</h3>
       <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated effective date.</p>
       <h3>Contact Us</h3>
-      <p>If you have any questions about this Privacy Policy, please contact us at <a href="/cdn-cgi/l/email-protection#bbd8d4d5cfdad8cffbdec8d7daddd4c9dfde95d8d4d6" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="43202c2d372220370326302f22252c3127266d202c2e">[email&#160;protected]</span></a>.</p>
+      <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:contact@eslaforde.com" style="color:var(--teal)">contact@eslaforde.com</a>.</p>
     </div>
     <div class="legal-doc" id="doc-terms">
       <h3>Terms of Use</h3>
       <p>Our apps are licensed under Apple's standard End User Licence Agreement (EULA). By downloading or using our apps, you agree to these terms.</p>
       <p style="margin-top:20px"><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--navy);color:white;text-decoration:none;border-radius:10px;font-weight:600;font-size:.92rem">View Apple's Standard EULA &#8599;</a></p>
-      <p style="margin-top:24px">If you have any questions, please contact us at <a href="/cdn-cgi/l/email-protection#95f6fafbe1f4f6e1d5f0e6f9f4f3fae7f1f0bbf6faf8" style="color:var(--teal)"><span class="__cf_email__" data-cfemail="65060a0b110406112500160904030a1701004b060a08">[email&#160;protected]</span></a>.</p>
+      <p style="margin-top:24px">If you have any questions, please contact us at <a href="mailto:contact@eslaforde.com" style="color:var(--teal)">contact@eslaforde.com</a>.</p>
     </div>
   </div>
 </div>
@@ -300,10 +299,10 @@
 <div class="page" id="page-contact">
   <div class="page-header"><h2>Get in Touch</h2><p>Have a question, bug report, or feature request? We'd love to hear from you.</p></div>
   <div class="contact-layout">
-    <div style="width:100%;height:500px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)">
+    <div style="width:100%;height:600px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border)">
       <iframe src="https://form.typeform.com/to/l52X54WJ" style="width:100%;height:100%;border:none"></iframe>
     </div>
-    <div class="contact-alt">Or email us directly at <a href="/cdn-cgi/l/email-protection#33505c5d475250477356405f52555c4157561d505c5e"><span class="__cf_email__" data-cfemail="690a06071d080a1d290c1a05080f061b0d0c470a0604">[email&#160;protected]</span></a></div>
+    <div class="contact-alt">Or email us directly at <a href="mailto:contact@eslaforde.com">contact@eslaforde.com</a></div>
   </div>
 </div>
 
@@ -320,7 +319,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function showPage(p){
   document.querySelectorAll('.page').forEach(function(el){el.classList.remove('active')});
   document.getElementById('page-'+p).classList.add('active');
@@ -329,3 +328,21 @@ function showPage(p){
   if(link)link.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   document.getElementById('navLinks').classList.remove('open');
+}
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}
+function toggleFaq(el){
+  var item=el.parentElement;
+  var wasOpen=item.classList.contains('open');
+  item.parentElement.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open')});
+  if(!wasOpen)item.classList.add('open');
+}
+function showLegalTab(tab,btn){
+  document.querySelectorAll('.legal-tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.legal-doc').forEach(function(d){d.classList.remove('active')});
+  btn.classList.add('active');
+  document.getElementById('doc-'+tab).classList.add('active');
+}
+window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>10)});
+</script>
+</body>
+</html>
