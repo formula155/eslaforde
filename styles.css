@@ -22,9 +22,11 @@ section{max-width:1140px;margin:0 auto;padding:0 24px}
 .app-card::after{content:'';position:absolute;top:0;left:0;right:0;height:4px}
 .app-card:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--teal-light))}
 .app-card:nth-child(2)::after{background:linear-gradient(90deg,var(--gold),var(--gold-dark))}
+.app-card:nth-child(3)::after{background:linear-gradient(90deg,#2B7DDA,#4FB3F0)}
 .app-icon{width:80px;height:80px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:18px}
 .app-icon.anagram{background:transparent}
 .app-icon.spelling{background:transparent}
+.app-icon.workout{background:transparent}
 .app-card h2{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:10px;color:var(--navy)}
 .app-card p{color:var(--text-light);font-size:1.05rem;margin-bottom:14px;line-height:1.7}
 .app-card ul{list-style:none;margin:0 0 20px;padding:0}
@@ -33,6 +35,8 @@ section{max-width:1140px;margin:0 auto;padding:0 24px}
 .badge-link{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:var(--navy);color:white;text-decoration:none;border-radius:10px;font-size:.86rem;font-weight:600;transition:background .2s}
 .badge-link:hover{background:var(--navy-deep)}
 .badge-link svg{width:18px;height:18px}
+.badge-link-coming{background:var(--slate);cursor:default;opacity:.85}
+.badge-link-coming:hover{background:var(--slate)}
 .features-strip{padding:40px 24px;background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .features-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;text-align:center}
 .feature-item h3{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:600;margin-bottom:4px;color:var(--navy)}
@@ -78,4 +82,4 @@ footer a:hover{color:var(--teal-light)}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .animate-in{animation:fadeUp .5s ease forwards;opacity:0}
-.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}

@@ -1,0 +1,5 @@
+# Local Claude Code dev config (preview server, settings, etc.)
+.claude/
+
+# macOS metadata
+.DS_Store
