@@ -22,7 +22,7 @@ section{max-width:1140px;margin:0 auto;padding:0 24px}
 .app-card::after{content:'';position:absolute;top:0;left:0;right:0;height:4px}
 .app-card:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--teal-light))}
 .app-card:nth-child(2)::after{background:linear-gradient(90deg,var(--gold),var(--gold-dark))}
-.app-card:nth-child(3)::after{background:linear-gradient(90deg,#2B7DDA,#4FB3F0)}
+.app-card:nth-child(3)::after{background:linear-gradient(90deg,#0A84FF,#5AC8FA)}
 .app-icon{width:80px;height:80px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:18px}
 .app-icon.anagram{background:transparent}
 .app-icon.spelling{background:transparent}
