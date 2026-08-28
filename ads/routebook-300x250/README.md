@@ -31,14 +31,22 @@ Source: [Telegraph Specs — Standard IAB Display](https://sites.google.com/tele
 
 ## Click-through
 
-    https://apps.apple.com/app/simple-routebook/id6792829304
+    https://apps.apple.com/app/apple-store/id6792829304?pt=128192855&ct=Telegraph-MPU-Aug26&mt=8
+
+This is an Apple App Analytics campaign link. `pt=128192855` is the account-wide provider
+token (identical for every Eslaforde app and campaign); `ct=Telegraph-MPU-Aug26` names the campaign, scoped to publisher, format and month;
+`mt=8` is the media-type constant for apps. It carries no country segment, so Apple routes
+each visitor to their own storefront.
 
 The HTML5 build declares a `clickTag` variable that the ad server overwrites at serve time,
 and `<meta name="ad.size" content="width=300,height=250">` for auto-sizing. For a static JPG
 buy, give Telegraph the click URL above alongside the file.
 
-Add campaign tracking parameters to the click URL when trafficking, e.g.
-`?pt=…&ct=telegraph_mpu&mt=8` (Apple App Analytics campaign token).
+Reporting appears in App Store Connect under Analytics → Acquisition → Campaigns. Expect
+nothing for at least 24 hours, and note that a campaign stays hidden until it has at least
+**5 first-time downloads** in the selected date range — on a newly-free app that threshold is
+the usual reason tracking looks broken when it isn't. Attribution counts downloads within 24
+hours of the click.
 
 ## Copy
 

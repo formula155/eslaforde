@@ -28,6 +28,7 @@ section{max-width:1140px;margin:0 auto;padding:0 24px}
 .app-icon.spelling{background:transparent}
 .app-icon.workout{background:transparent}
 .app-icon.routebook{background:transparent}
+.app-icon.balanceplanner{background:transparent}
 .app-card h2{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:10px;color:var(--navy)}
 .app-card p{color:var(--text-light);font-size:1.05rem;margin-bottom:14px;line-height:1.7}
 .app-card ul{list-style:none;margin:0 0 20px;padding:0}
