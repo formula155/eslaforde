@@ -37,6 +37,7 @@ section{max-width:1140px;margin:0 auto;padding:0 24px}
 .badge-link{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;background:var(--navy);color:white;text-decoration:none;border-radius:10px;font-size:.86rem;font-weight:600;transition:background .2s}
 .badge-link:hover{background:var(--navy-deep)}
 .badge-link svg{width:18px;height:18px}
+.badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
 .badge-link-coming{background:var(--slate);cursor:default;opacity:.85}
 .badge-link-coming:hover{background:var(--slate)}
 .features-strip{padding:40px 24px;background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
