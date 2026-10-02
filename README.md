@@ -2,7 +2,7 @@
 
 Support website for Eslaforde Simple Solutions iOS apps.
 
-- **Simple Anagram Helper** — interactive tile workspace for anagram puzzles
+- **Simple Anagram Helper** — interactive tile workspace for anagram puzzles, with an optional confirm-first Solve Puzzle lookup
 - **Simple Spelling Bee Helper** — hexagonal tile workspace for spelling bee puzzles
 
 ## Hosting
