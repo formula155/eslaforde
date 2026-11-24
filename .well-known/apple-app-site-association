@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["9AM3MM5LCW.com.eslaforde.showsearch"],
+        "components": [
+          { "/": "/showsearch/add", "comment": "A show shared from Simple Show Search" },
+          { "/": "/showsearch/add/", "comment": "The same link with a trailing slash" }
+        ]
+      }
+    ]
+  }
+}

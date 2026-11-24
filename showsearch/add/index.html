@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!-- Site version: 2026.11.24 -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shared Show | Simple Show Search</title>
+<meta name="description" content="A show shared from Simple Show Search.">
+<meta name="author" content="Eslaforde LLC">
+<!-- Each link is one person's share, so keep these pages out of search results -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2B3D5B">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="A show shared from Simple Show Search">
+<meta property="og:description" content="Open this link to add the show to your list.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://eslaforde.com/logo.png">
+<meta property="og:site_name" content="Eslaforde Simple Solutions">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Outfit:wght@400;500;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="/styles.css">
+<style>
+.share-card{max-width:560px;margin:0 auto 60px;padding:28px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow)}
+.share-card h2{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px}
+.share-services{list-style:none;margin:0 0 24px}
+.share-services li{padding:10px 0;border-bottom:1px solid var(--border);font-weight:500;color:var(--navy);display:flex;justify-content:space-between;gap:12px;align-items:center}
+.share-services li:last-child{border-bottom:none}
+.share-services a{color:var(--teal-dark);font-weight:600;text-decoration:none;white-space:nowrap}
+.share-open{display:block;text-align:center;padding:14px 24px;background:var(--navy);color:#fff;border-radius:12px;text-decoration:none;font-weight:600}
+.share-note{font-size:.9rem;color:var(--text-light);margin-top:14px;text-align:center}
+.share-beta{margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.share-beta p{font-size:.9rem;color:var(--text-light)}
+.share-beta a{color:var(--teal-dark);font-weight:600}
+</style>
+</head>
+<body>
+<nav id="mainNav">
+<div class="nav-inner">
+<a class="nav-logo" href="/" aria-label="Eslaforde Simple Solutions home"><img src="/logo.png" alt="Eslaforde Simple Solutions" width="180" height="48"></a>
+<ul class="nav-links" id="navLinks">
+<li><a href="/">Apps</a></li>
+<li><a href="/support/">Support</a></li>
+<li><a href="/privacy/">Privacy &amp; Terms</a></li>
+<li><a href="/contact/">Contact</a></li>
+</ul>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</div>
+</nav>
+<main>
+<div class="page-header"><h1 id="showName">Shared Show</h1><p id="showIntro">Shared from Simple Show Search.</p></div>
+<div class="share-card" id="shareCard" hidden>
+<h2>Where to watch</h2>
+<ul class="share-services" id="serviceList"></ul>
+<h2>Already have Simple Show Search?</h2>
+<a class="share-open" id="openInApp" href="#">Add to My List in Simple Show Search</a>
+<p class="share-note">This button only works on an iPhone, iPad or Mac with Simple Show Search installed. If you have the app and nothing happens, update it to the latest version.</p>
+<div class="share-beta">
+<h2>Don't have the app?</h2>
+<p>Simple Show Search finds where shows are streaming and keeps your list in sync across your devices. It's in beta testing for iPhone, iPad and Mac. <a href="/contact/">Contact us</a> if you'd like to try it.</p>
+</div>
+</div>
+<div class="share-card" id="emptyCard" hidden>
+<p class="share-note" style="margin-top:0">This link doesn't contain a show. Ask the person who sent it to share it again from Simple Show Search.</p>
+</div>
+<noscript><div class="share-card"><p class="share-note" style="margin-top:0">Turn on JavaScript to see the shared show, or open this link on a device with Simple Show Search installed.</p></div></noscript>
+</main>
+<footer>
+<div class="footer-inner">
+<div class="footer-links">
+<a href="/">Apps</a>
+<a href="/support/">Support</a>
+<a href="/privacy/">Privacy Policy</a>
+<a href="/privacy/#terms">Terms of Use</a>
+<a href="/contact/">Contact</a>
+</div>
+<p>&copy; 2026 Eslaforde LLC. All rights reserved.</p>
+</div>
+</footer>
+<script>
+function toggleMenu(){
+  var btn=document.querySelector('.hamburger');
+  var links=document.getElementById('navLinks');
+  var isOpen=links.classList.toggle('open');
+  btn.setAttribute('aria-expanded',isOpen?'true':'false');
+}
+// The show travels in the part of the link after "#", which browsers never send to the server.
+// Everything in it comes from whoever made the link, so it is only ever inserted as plain text.
+(function(){
+  var data=location.hash.replace(/^#/,'')||location.search.replace(/^\?/,'');
+  var params=new URLSearchParams(data);
+  var show=(params.get('show')||'').trim().slice(0,120);
+  var services=[];
+  params.forEach(function(value,key){
+    if(key==='service'){
+      var name=value.trim().slice(0,60);
+      if(name&&services.length<20)services.push({name:name,link:null});
+    }else if(key==='link'&&services.length){
+      try{
+        var url=new URL(value);
+        if(url.protocol==='https:'||url.protocol==='http:')services[services.length-1].link=url.href;
+      }catch(e){}
+    }
+  });
+  if(!show||!services.length){
+    document.getElementById('emptyCard').hidden=false;
+    return;
+  }
+  document.title=show+' | Simple Show Search';
+  document.getElementById('showName').textContent=show;
+  var list=document.getElementById('serviceList');
+  services.forEach(function(service){
+    var item=document.createElement('li');
+    var name=document.createElement('span');
+    name.textContent=service.name;
+    item.appendChild(name);
+    if(service.link){
+      var link=document.createElement('a');
+      link.href=service.link;
+      link.rel='noopener noreferrer';
+      link.textContent='Watch';
+      item.appendChild(link);
+    }
+    list.appendChild(item);
+  });
+  document.getElementById('openInApp').href='showsearch://add?'+data;
+  document.getElementById('shareCard').hidden=false;
+})();
+</script>
+</body>
+</html>
