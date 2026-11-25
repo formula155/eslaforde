@@ -118,10 +118,12 @@ function toggleMenu(){
   }else{
     apple.parentNode.hidden=true;
   }
-  // The same forms the app reads: an episode, or just the podcast
+  // The same forms the app reads: an episode, or just the podcast. The names go too, so the app
+  // can say what is being added before it has loaded the feed.
+  var names=(title?'&title='+encodeURIComponent(title):'');
   var appLink=guid
-    ?'simplepodcasts://episode?feed='+encodeURIComponent(feed)+'&guid='+encodeURIComponent(guid)
-    :'simplepodcasts://show?feed='+encodeURIComponent(feed)+(title?'&title='+encodeURIComponent(title):'');
+    ?'simplepodcasts://episode?feed='+encodeURIComponent(feed)+'&guid='+encodeURIComponent(guid)+names+(episode?'&episode='+encodeURIComponent(episode):'')
+    :'simplepodcasts://show?feed='+encodeURIComponent(feed)+names;
   document.getElementById('openInApp').href=appLink;
   document.getElementById('shareCard').hidden=false;
 })();
