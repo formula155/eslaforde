@@ -7,6 +7,13 @@
           { "/": "/showsearch/add", "comment": "A show shared from Simple Show Search" },
           { "/": "/showsearch/add/", "comment": "The same link with a trailing slash" }
         ]
+      },
+      {
+        "appIDs": ["9AM3MM5LCW.com.eslaforde.simplepodcasts"],
+        "components": [
+          { "/": "/podcasts/add", "comment": "A podcast or episode shared from Simple Podcasts" },
+          { "/": "/podcasts/add/", "comment": "The same link with a trailing slash" }
+        ]
       }
     ]
   }
